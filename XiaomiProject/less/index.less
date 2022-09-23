@@ -1,0 +1,366 @@
+// out: ../css/
+@import url(./base.less);
+@import url(./bootstrap_reset.less);
+
+@screen-sm-min : 768px;
+@screen-md-min : 800px;
+@screen-lg-min : 1200px;
+
+@fontcolor: #fff;
+@activecolor: #ff6900;
+
+body {
+    font-family: MiSans;
+}
+
+// 导航栏基本样式
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    height: 65px;
+
+    .wrapper {
+        display: flex;
+        position: relative;
+        max-width: 1440px;
+        height: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        padding: 0 15px;
+        color: @fontcolor;
+    }
+}
+
+// 内容基本样式 
+.content{
+    .content-page-two,
+    .content-page-three,
+    .content-page-four,
+    .content-page-five,
+    .content-page-six{
+        position: relative;
+        margin-bottom: 10px;
+    }
+
+    .content-banner{
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+
+        .imgboxs{
+            position: relative;
+            display: flex;
+            width: 400%;
+        }
+    }
+}
+
+// 屏幕小于1200px的导航栏响应样式
+@media screen and (max-width: 1200px) {
+    .header {
+        height: 1.45rem;
+        font-size: .38rem;
+        font-weight: 500;
+
+        .wrapper {
+            padding: 0.46rem;
+        }
+
+        .logo {
+            img {
+                width: 0.65rem;
+                height: 0.65rem;
+            }
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            top: 1.45rem;
+            left: 0;
+            right: 0;
+            background-color: black;
+            padding: 0 0.46rem;
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                height: 12rem;
+                border-top: 1px solid pink;
+
+                li {
+                    a {
+                        color: #cccccc;
+                    }
+
+                    &:first-child a {
+                        color: @activecolor;
+                    }
+                }
+
+            }
+        }
+
+        .login-menu {
+            display: none;
+            position: absolute;
+            top: 1.45rem;
+            left: 0;
+            right: 0;
+            padding: 0 15px;
+            background-color: #000;
+
+            .login-info {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                height: 2rem;
+                border-top: 1px solid pink;
+
+                a {
+                    color: @fontcolor;
+                }
+            }
+        }
+
+        .right-info {
+            display: flex;
+
+            .icon-user {
+                width: 0.39rem;
+                height: 0.39rem;
+                background-image: url(../images/user.png);
+                background-size: cover;
+                cursor: pointer;
+                transition: all 0.2s linear;
+            }
+
+            .icon-memu {
+                width: 0.39rem;
+                height: 0.39rem;
+                margin-left: 25px;
+                background-image: url(../images/menu.png);
+                background-size: cover;
+                cursor: pointer;
+                transition: all 0.2s linear;
+            }
+
+            .icon-close {
+                background-image: url(../images/close.png);
+            }
+        }
+
+        .menu-active {
+            display: block;
+        }
+    }
+
+    .header-active {
+        background-color: black !important;
+    }
+}
+
+// 屏幕大于1200px的导航栏响应样式
+@media (min-width: @screen-lg-min) {
+    .header {
+        background-color: transparent;
+
+        .wrapper {
+            .logo {
+                width: 34px;
+                height: 34px;
+            }
+
+            .menu {
+                display: block;
+                width: 844px;
+                height: 100%;
+
+                ul {
+                    height: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-size: 14px;
+                    font-weight: 500;
+
+                    a {
+                        color: @fontcolor;
+
+                        &:hover {
+                            color: @activecolor;
+                        }
+                    }
+
+                    .active {
+                        color: @activecolor;
+                    }
+                }
+            }
+
+            .login-info {
+                font-size: 14px;
+                font-weight: 400;
+
+                a {
+                    color: @fontcolor;
+
+                    &:hover {
+                        color: @activecolor;
+                    }
+                }
+
+                span {
+                    margin: 0 25px;
+                }
+            }
+
+            .right-info {
+                display: none;
+            }
+        }
+    }
+}
+
+// 屏幕小于800的内容样式
+@media (max-width:@screen-md-min) {
+    .content{
+        .content-page-two{
+            .buy-now{
+                content: '';
+                position: absolute;
+                top: 3%;
+                bottom: 0%;
+                left: 10%;
+                right: 10%;
+                cursor: pointer;
+            }
+        }
+        .content-page-three{
+            .buy-now{
+                content: '';
+                position: absolute;
+                top: 3%;
+                bottom: 0%;
+                left: 10%;
+                right: 10%;
+                cursor: pointer;
+            }
+        }
+        .content-page-six{
+            .buy-now{
+                content: '';
+                position: absolute;
+                top: 3%;
+                bottom: 0%;
+                left: 10%;
+                right: 10%;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// 屏幕大于800的内容样式
+@media (min-width: @screen-md-min) {
+    .content{
+        .content-page-two {
+
+            .learn-more{
+                position: absolute;
+                cursor: pointer;
+                top: 3rem;
+                left: 9.5rem;
+                height: 1.5rem;
+                width: 2rem;
+                // background-color: pink;
+            }
+            .buy-now{
+                position: absolute;
+                cursor: pointer;
+                top: 3rem;
+                left: 11.5rem;
+                height: 1.5rem;
+                width: 2rem;
+                // background-color: rgba(0, 0, 0, .5);
+            }
+        }
+        .content-page-three{
+
+            .learn-more{
+                position: absolute;
+                cursor: pointer;
+                top: 4rem;
+                left: 11rem;
+                height: 1.5rem;
+                width: 2rem;
+                // background-color: pink;
+            }
+            .buy-now{
+                position: absolute;
+                cursor: pointer;
+                top: 4rem;
+                left: 13rem;
+                height: 1.5rem;
+                width: 2rem;
+                // background-color: rgba(0, 0, 0, .5);
+            }
+        }
+        .content-page-six{
+
+            .learn-more{
+                position: absolute;
+                cursor: pointer;
+                top: 4rem;
+                left: 5.3rem;
+                height: 1.5rem;
+                width: 2rem;
+                // background-color: pink;
+            }
+            .buy-now{
+                position: absolute;
+                cursor: pointer;
+                top: 4rem;
+                left: 7.3rem;
+                height: 1.5rem;
+                width: 2rem;
+                // background-color: rgba(0, 0, 0, .5);
+            }
+        }
+        // 轮播图
+        .content-banner{
+            .bullets{
+                position: absolute;
+                bottom: 1rem;
+                left: 50%;
+                display: flex;
+                width: 20%;
+                height: 0.75%;
+                transform: translateX(-50%);
+
+                li{
+                    flex:1;
+                    height: 100%;
+                    background-color: #B2B2B2;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 2560px){
+    html{
+        font-size: 5.208203125vw!important;
+    }
+}
+
+@media screen and (max-width: 800px){
+    html {
+        font-size: 9.2592592593vw!important;
+    }
+}
