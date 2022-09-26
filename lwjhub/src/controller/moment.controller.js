@@ -1,6 +1,6 @@
 const momentService = require('../service/moment.service')
 
-class Moment {
+class MomentController {
     async createmoment(ctx, next) {
         // 1.获取数据(user_id,content)
         const userId = ctx.user.id
@@ -14,10 +14,10 @@ class Moment {
 
     async momentDatail(ctx, next) {
         // 1.获取数据(momentId)
-        const momentId = ctx.request.params.momentId;
-        console.log(momentId);
+        const momentId = ctx.request.params.momentsId;
+        // console.log(momentsId);
         // 2.根据id去查询这条数据
-        const result = await momentService.getMomentId(momentId)
+        const result = await momentService.getMomentId(momentsId)
         console.log(result);
         ctx.body = result
     }
@@ -33,12 +33,23 @@ class Moment {
     }
 
     async momentUpdata(ctx, next) {
-        const { momentId } = ctx.params
+        const { momentsId } = ctx.params
         const { content } = ctx.request.body
-        const { id } = ctx.user
 
-        ctx.body = 'test'
+        // 修改内容
+        const result =await momentService.update(content,momentsId)
+        
+        ctx.body = result
+    }
+
+    async momentDelete(ctx, next) {
+        const { momentsId } = ctx.params
+
+        // 删除内容
+        const result =await momentService.remove(momentsId)
+
+        ctx.body = result
     }
 }
 
-module.exports = new Moment()
+module.exports = new MomentController()
