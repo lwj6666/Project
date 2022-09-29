@@ -10,12 +10,19 @@ const {
     momentDatail,
     momentList,
     momentUpdata,
-    momentDelete
+    momentDelete,
+    momentAddLabels,
+    fileInfo
 } =require('../controller/moment.controller')
 const {
     verifyAuth,
     verifyPermission
 } = require('../middleware/auth.middleware')
+// 验证标签是否存在
+const {
+    verifyLabelExists
+} = require('../middleware/label.middleware')
+
 
 // 动态
 momentRouter.post('/',verifyAuth,createmoment)
@@ -34,5 +41,11 @@ momentRouter.patch('/:momentsId',verifyAuth,verifyPermission,momentUpdata)
 
 // 删除某个动态 
 momentRouter.delete('/:momentsId',verifyAuth,verifyPermission,momentDelete)
+
+// 给动态添加标签
+momentRouter.post('/:momentsId/labels',verifyAuth,verifyPermission,verifyLabelExists,momentAddLabels)
+
+// 动态配图获取
+momentRouter.get('/images/:filename',fileInfo)
 
 module.exports = momentRouter

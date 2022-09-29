@@ -59,7 +59,7 @@ const verifyAuth = async (ctx, next) => {
         const error = new Error(errorType.UNAUTHORIZATION)
         return ctx.app.emit('error', error, ctx)
     }
-
+    
     await next()
 }
 
