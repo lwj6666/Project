@@ -1,9 +1,9 @@
 # 依赖
-/node_modules
+node_modules/*
 
 # 忽略图片
-/uploads
-/images
+uploads/*
+images/*
 
 # 忽略文档
 developmentIdeas.md
