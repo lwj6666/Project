@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const http = axios.create({
     // 通用请求的地址
-    baseURL: '/',
+    baseURL: 'http://localhost:8000',
     timeout: 10000
 })
 

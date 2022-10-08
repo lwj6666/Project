@@ -43,40 +43,28 @@
           </div>
         </el-card>
       </div>
+      <el-card style="height: 280px">
+        <!-- 折线图 -->
+        <HomeLineChart></HomeLineChart>
+      </el-card>
+      <div class="graph">
+        <el-card style="height: 260px">1</el-card>
+        <el-card style="height: 260px">2</el-card>
+      </div>
     </el-col>
   </el-row>
 </template>
 <script>
+// 获取接口数据
+import { getData } from "../../api/index";
+import HomeLineChart from '../../components/Homecomponents/HomeLineChart.vue'
+
 export default {
+  name:"Home",
   data() {
     return {
       userImg: require("../../assets/logo.png"),
-      tableData: [
-        {
-          name: "小米",
-          todayBuy: 100,
-          monthBuy: 300,
-          totalBuy: 800,
-        },
-        {
-          name: "红米",
-          todayBuy: 100,
-          monthBuy: 300,
-          totalBuy: 800,
-        },
-        {
-          name: "苹果",
-          todayBuy: 100,
-          monthBuy: 300,
-          totalBuy: 800,
-        },
-        {
-          name: "魅族",
-          todayBuy: 100,
-          monthBuy: 300,
-          totalBuy: 800,
-        },
-      ],
+      tableData: [],
       countData: [
         {
           name: "今日支付订单",
@@ -115,14 +103,21 @@ export default {
           color: "#5ab1ef",
         },
       ],
+      orderData: [],
       // card样式
       CardStyle: {
         display: "flex",
         alignItems: "center",
-        padding: "0px"
+        padding: "0px",
       },
     };
   },
+  mounted() {
+    getData().then(({ data }) => {
+      this.tableData = data;
+    });
+  },
+  components: { HomeLineChart },
 };
 </script>
 <style lang="less" scoped>
@@ -165,9 +160,9 @@ export default {
 .num {
   display: flex;
   flex-wrap: wrap;
-  justify-content:space-between;
+  justify-content: space-between;
 
-  .el-card{
+  .el-card {
     width: 32%;
     margin-bottom: 20px;
   }
@@ -184,7 +179,7 @@ export default {
     display: flex;
     flex-direction: column;
     margin-left: 15px;
-    
+
     .price {
       font-size: 30px;
       margin-bottom: 10px;
@@ -195,6 +190,15 @@ export default {
       text-align: center;
       color: #999999;
     }
+  }
+}
+.graph {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+  .el-card {
+    width: 48%;
   }
 }
 </style>

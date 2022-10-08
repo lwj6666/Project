@@ -1,7 +1,8 @@
 const Router = require('@koa/router')
 
 const {
-    phonePurchaseData
+    phonePurchaseData,
+    phoneDailySalesData
 } = require('../controller/goods.controller')
 
 const goodsRouter =new Router({
@@ -9,5 +10,6 @@ const goodsRouter =new Router({
 })
 
 goodsRouter.get('/phoneData',phonePurchaseData)
+goodsRouter.get('/phoneDailySales',phoneDailySalesData)
 
 module.exports = goodsRouter
