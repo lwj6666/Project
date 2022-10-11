@@ -9,7 +9,7 @@ class goodsService {
         return result
     }
 
-    async getphoneDailySalesData() {
+    async getPhoneWeeklySalesData() {
         const statement = `
         SELECT 
         p.name,JSON_ARRAYAGG(JSON_OBJECT('sale',pd.sale,'date',pd.date)) sale_info
@@ -17,6 +17,18 @@ class goodsService {
         LEFT JOIN phone_daily_sales pd ON p.id = pd.phone_id
         GROUP BY p.id;`
 
+        const [result] = await connection.execute(statement)
+
+        return result
+    }
+
+    async getXiaomiPhoneModelsPricedData(){
+        const statement = `
+        SELECT 
+        pt.name,pt.value
+        FROM phone p
+        RIGHT JOIN phone_type pt ON p.id=pt.phone_id`
+        
         const [result] = await connection.execute(statement)
 
         return result

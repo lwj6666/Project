@@ -1,9 +1,24 @@
 <template>
   <header>
     <div class="l-content">
-      <el-button plain icon="el-icon-menu" size="mini" @click="isCollapseChange()"></el-button>
-      <h3>首页</h3>
+      <el-button
+        plain
+        icon="el-icon-menu"
+        size="mini"
+        @click="isCollapseChange()"
+      ></el-button>
+
+      <!-- 面包屑 -->
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item
+          v-for="item in tabsList"
+          :key="item.name"
+          :to="{ path: item.path }"
+          >{{ item.label }}</el-breadcrumb-item
+        >
+      </el-breadcrumb>
     </div>
+
     <div class="r-content">
       <el-dropdown trigger="click" size="mini">
         <span>
@@ -18,7 +33,7 @@
   </header>
 </template>
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "CommonHeader",
   data() {
@@ -27,12 +42,15 @@ export default {
     };
   },
   methods: {
-    ...mapMutations('pageControlAbout',['isCollapseChange'])
+    ...mapMutations("pageControlAbout", ["isCollapseChange"]),
+  },
+  computed: {
+    ...mapState("pageControlAbout", ["tabsList"]),
   },
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 header {
   display: flex;
   height: 100%;
@@ -40,19 +58,34 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  .l-content{
+  .l-content {
     display: flex;
     align-items: center;
 
-    .el-button{
-        margin-right: 20px;
+    .el-button {
+      margin-right: 20px;
+    }
+
+    /deep/.el-breadcrumb__item {
+      .el-breadcrumb__inner {
+        font-weight: normal;
+        &.is-link {
+          color: #666;
+        }
+      }
+
+      &:last-child{
+        .el-breadcrumb__inner{
+          color: #fff;
+        }
+      }
     }
   }
-  .r-content{
-    .userImg{
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
+  .r-content {
+    .userImg {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
     }
   }
 }

@@ -7,7 +7,9 @@
       <el-header>
         <CommentHeader></CommentHeader>
       </el-header>
+
       <el-main>
+        <CommonTag></CommonTag>
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -17,6 +19,7 @@
 <script>
 import CommentAside from '../components/CommonAside.vue'
 import CommentHeader from '../components/CommonHeader.vue'
+import CommonTag from '../components/CommonTag.vue'
 
 export default {
     data() {
@@ -26,7 +29,8 @@ export default {
     },
     components:{
         CommentAside,
-        CommentHeader
+        CommentHeader,
+        CommonTag
     }
 };
 </script>

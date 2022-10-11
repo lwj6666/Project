@@ -48,8 +48,10 @@
         <HomeLineChart></HomeLineChart>
       </el-card>
       <div class="graph">
-        <el-card style="height: 260px">1</el-card>
-        <el-card style="height: 260px">2</el-card>
+        <el-card style="height: 260px"><HomeHistogram></HomeHistogram></el-card>
+        <el-card style="height: 260px" :body-style="{ padding: '0px' }"
+          ><HomePieChart></HomePieChart
+        ></el-card>
       </div>
     </el-col>
   </el-row>
@@ -57,10 +59,12 @@
 <script>
 // 获取接口数据
 import { getData } from "../../api/index";
-import HomeLineChart from '../../components/Homecomponents/HomeLineChart.vue'
+import HomeLineChart from "../../components/Homecomponents/HomeLineChart.vue";
+import HomeHistogram from "../../components/Homecomponents/HomeHistogram.vue";
+import HomePieChart from "../../components/Homecomponents/HomePieChart.vue";
 
 export default {
-  name:"Home",
+  name: "Home",
   data() {
     return {
       userImg: require("../../assets/logo.png"),
@@ -117,7 +121,7 @@ export default {
       this.tableData = data;
     });
   },
-  components: { HomeLineChart },
+  components: { HomeLineChart, HomeHistogram, HomePieChart },
 };
 </script>
 <style lang="less" scoped>

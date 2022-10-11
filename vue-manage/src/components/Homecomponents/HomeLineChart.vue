@@ -3,7 +3,7 @@
 </template>
 <script>
 // 获取折线图相关数据信息
-import { getphoneDailySales } from "../../api/index";
+import { getphoneWeeklySales } from "../../api/index";
 
 // 引入echarts
 import * as echarts from "echarts";
@@ -16,9 +16,10 @@ export default {
     };
   },
   mounted() {
-    getphoneDailySales().then(({ data }) => {
+    getphoneWeeklySales().then(({ data }) => {
       this.orderData = data;
 
+      // echarts折线图配置
       // 基于准备好的dom，初始化echarts实例
       const echarts1 = echarts.init(this.$refs.LineChart);
       const echarts1Option = {};
@@ -48,7 +49,8 @@ export default {
       echarts1Option.xAxis = {
         data: dateData,
       };
-      echarts1Option.yAxis ={}
+      echarts1Option.yAxis = {};
+      echarts1Option.tooltip={}
       echarts1.setOption(echarts1Option);
     });
   },
@@ -56,6 +58,6 @@ export default {
 </script>
 <style lang="less" scoped>
 .LineChart {
-  height: 240px;
+  height: 260px;
 }
 </style>

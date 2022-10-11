@@ -13,6 +13,8 @@ const routes = [
         name: 'Main',
         path: '/',
         component: Main,
+        // 重定向到home
+        redirect:'/home',
         children: [
             {
                 name: 'Home',
@@ -34,7 +36,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    mode: 'hash',
+    mode: 'history',
     routes
 })
 
