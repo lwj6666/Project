@@ -42,6 +42,7 @@ export default {
     };
   },
   methods: {
+    // 控制侧边栏伸缩
     ...mapMutations("pageControlAbout", ["isCollapseChange"]),
   },
   computed: {

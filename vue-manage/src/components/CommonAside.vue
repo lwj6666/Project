@@ -29,6 +29,7 @@
         v-for="children in item.children"
         :key="children.path"
         :index="children.path"
+        @click="clickMenu(children)"
         >{{ children.label }}</el-menu-item
       >
     </el-submenu>
@@ -99,10 +100,12 @@ export default {
     clickMenu(item) {
       // 路径不一致才开始跳转
       if (this.$route.path !== item.path) {
+        // 编程式路由
         this.$router.push({
           name: item.name,
         });
 
+        // 将数据添加进vuex中tabsList
         this.$store.commit("pageControlAbout/selectMenu", item);
       }
     },
@@ -120,6 +123,7 @@ export default {
     // subject(){
     //   return this.$store.state.pageControlAbout.isCollapse
     // }
+    // 获取侧边栏伸缩信号
     ...mapState("pageControlAbout", ["isCollapse"]),
   },
 };
